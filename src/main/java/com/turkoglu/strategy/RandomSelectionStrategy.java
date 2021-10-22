@@ -3,7 +3,6 @@ package com.turkoglu.strategy;
 import com.turkoglu.game.Selection;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -12,6 +11,8 @@ public class RandomSelectionStrategy implements PlayingStrategy {
     private static final int SELECTION_SIZE = Selection.values().length;
 
     private static final Map<Integer, Selection> selections = new HashMap<>();
+
+    private final Random random;
 
     static {
         Selection[] selectionEnums = Selection.values();
@@ -22,12 +23,11 @@ public class RandomSelectionStrategy implements PlayingStrategy {
     }
 
     public RandomSelectionStrategy() {
-
+        this.random = new Random();
     }
 
     @Override
     public Selection decide() {
-        Random random = new Random();
         // random selection between [1, SELECTION_SIZE] inclusive
         int randomChoice = random.nextInt(SELECTION_SIZE - 1) + 1;
 

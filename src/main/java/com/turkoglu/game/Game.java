@@ -1,7 +1,5 @@
 package com.turkoglu.game;
 
-import com.turkoglu.player.Player;
-
 import java.util.Scanner;
 
 public interface Game {
@@ -9,10 +7,10 @@ public interface Game {
     void start(Scanner scanner);
 
     /**
-     * Returns the winner of the round
-     * @return
+     * a false value indicates the round is exited by a player
+     * @return boolean
      */
-    Player play();
+    boolean play();
 
     void stop();
 }
