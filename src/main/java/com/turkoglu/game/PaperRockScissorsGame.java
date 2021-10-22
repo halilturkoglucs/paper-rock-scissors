@@ -103,7 +103,7 @@ public class PaperRockScissorsGame implements Game {
             System.out.println("Player " + player + " won " + wins + " times");
         });
 
-        System.out.println("There were a total of " + this.statistics.get(null) + " draws");
+        System.out.println("There were a total of " + this.statistics.getOrDefault(null, 0) + " draws");
     }
 
     @Override

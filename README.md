@@ -3,11 +3,25 @@ This is a command line Maven app and requires Maven to run.
 
 com.turkoglu.Main is the main class to be run.
 
+#### How to Run ####
+
+Either directly run the compiled jar by going into the target folder by invoking below:
+
+1. cd target
+2. run below:
+```java -classpath classes com.turkoglu.Main imc-java-home-assignment-1.0-SNAPSHOT.jar```
+
+or:
+
+1. Open the source code in an editor
+2. ```mvn clean install``` the project
+3. Run com.turkoglu.Main main class
+
+### The game flow ###
+
 The main application starts the game immediately and runs in a loop until you select 'Exit'
 
 Main options for the user are 'Paper', 'Rock', 'Scissors', 'Exit'
-
-### The game flow ###
 
 The game is played between a human player and a computer player. You are required to provide
 input for each round and also for each round, computer makes a random choice. Based on the rules 
