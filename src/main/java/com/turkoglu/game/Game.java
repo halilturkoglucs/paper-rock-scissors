@@ -1,10 +1,8 @@
 package com.turkoglu.game;
 
-import java.util.Scanner;
-
 public interface Game {
 
-    void start(Scanner scanner);
+    void start();
 
     /**
      * a false value indicates the round is exited by a player
@@ -13,4 +11,6 @@ public interface Game {
     boolean play();
 
     void stop();
+
+    boolean isOn();
 }

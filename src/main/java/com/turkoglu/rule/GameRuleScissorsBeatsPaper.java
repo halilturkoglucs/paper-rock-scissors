@@ -10,7 +10,7 @@ public class GameRuleScissorsBeatsPaper extends PaperRockScissorsGameRule {
     }
 
     @Override
-    public boolean execute(Selection opponentsSelection) {
+    public boolean winsAgainst(Selection opponentsSelection) {
         return Selection.PAPER.equals(opponentsSelection);
     }
 }

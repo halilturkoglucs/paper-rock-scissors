@@ -16,15 +16,7 @@ public class PlayerSelection {
         return player;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     public Selection getSelection() {
         return selection;
-    }
-
-    public void setSelection(Selection selection) {
-        this.selection = selection;
     }
 }

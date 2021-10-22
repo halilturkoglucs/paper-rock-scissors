@@ -16,6 +16,6 @@ public interface Rule {
      * @param selection
      * @return
      */
-    boolean execute(Selection selection);
+    boolean winsAgainst(Selection selection);
 
 }

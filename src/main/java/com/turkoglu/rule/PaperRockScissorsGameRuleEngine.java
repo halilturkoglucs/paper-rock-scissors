@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PaperRockScissorsGameRuleEngine implements RuleEngine {
 
-    private List<Rule> rules;
+    private final List<Rule> rules;
 
     public PaperRockScissorsGameRuleEngine(List<Rule> rules) {
         this.rules = rules;
@@ -15,21 +15,26 @@ public class PaperRockScissorsGameRuleEngine implements RuleEngine {
 
     @Override
     public Player decideOnWinner(List<PlayerSelection> playerSelections) {
+        if (playerSelections.isEmpty() || playerSelections.size() > 2) throw new IllegalArgumentException();
+
         PlayerSelection firstPlayer = playerSelections.get(0);
         PlayerSelection secondPlayer = playerSelections.get(1);
 
         // Execute rules for the first player
         boolean firstPlayerWon = rules.stream().anyMatch(rule -> rule.applicable(firstPlayer.getSelection()) &&
-                rule.execute(secondPlayer.getSelection()));
+                rule.winsAgainst(secondPlayer.getSelection()));
 
+        if (firstPlayerWon) return firstPlayer.getPlayer();
+
+        // Execute rules for the second player in case the first player has not won
         boolean secondPlayerWon = rules.stream().anyMatch(rule -> rule.applicable(secondPlayer.getSelection()) &&
-                rule.execute(firstPlayer.getSelection()));
+                rule.winsAgainst(firstPlayer.getSelection()));
 
         // draw
-        if (!firstPlayerWon && !secondPlayerWon) {
+        if (!secondPlayerWon) {
             return null; // indicating a draw
         } else {
-            return firstPlayerWon ? firstPlayer.getPlayer() : secondPlayer.getPlayer();
+            return secondPlayer.getPlayer();
         }
     }
 }

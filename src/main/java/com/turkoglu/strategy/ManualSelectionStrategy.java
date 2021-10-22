@@ -1,19 +1,18 @@
 package com.turkoglu.strategy;
 
+import com.turkoglu.game.CommandLineReader;
 import com.turkoglu.game.Selection;
-
-import java.util.Scanner;
 
 public class ManualSelectionStrategy implements PlayingStrategy {
 
-    private Scanner scanner;
+    private CommandLineReader commandLineReader;
 
-    public ManualSelectionStrategy(Scanner scanner) {
-        this.scanner = scanner;
+    public ManualSelectionStrategy(CommandLineReader commandLineReader) {
+        this.commandLineReader = commandLineReader;
     }
 
     public Selection decide() {
-        String choice = scanner.nextLine();
+        String choice = commandLineReader.readCommand();
         return Selection.of(choice);
     }
 }

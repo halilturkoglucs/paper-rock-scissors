@@ -17,16 +17,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 public class PaperRockScissorsGame implements Game {
 
-    private List<Player> players;
-    private RuleEngine ruleEngine;
+    private final List<Player> players;
+    private final RuleEngine ruleEngine;
     private Map<Player, Integer> statistics;
     private boolean on;
+    private CommandLineReader commandLineReader;
 
-    public PaperRockScissorsGame() {
+    public PaperRockScissorsGame(CommandLineReader commandLineReader) {
+        this.commandLineReader = commandLineReader;
         this.players = new ArrayList<>();
 
         List<Rule> rules = new ArrayList<>();
@@ -38,8 +39,8 @@ public class PaperRockScissorsGame implements Game {
     }
 
     @Override
-    public void start(Scanner scanner) {
-        Player humanPlayer = initialiseHumanPlayer(scanner);
+    public void start() {
+        Player humanPlayer = initialiseHumanPlayer(commandLineReader);
         Player computerPlayer = initialiseComputerPlayer();
 
         players.add(humanPlayer);
@@ -51,8 +52,8 @@ public class PaperRockScissorsGame implements Game {
         this.statistics = new HashMap<>();
     }
 
-    private Player initialiseHumanPlayer(Scanner scanner) {
-        PlayingStrategy strategy = new ManualSelectionStrategy(scanner);
+    private Player initialiseHumanPlayer(CommandLineReader commandLineReader) {
+        PlayingStrategy strategy = new ManualSelectionStrategy(commandLineReader);
         return new HumanPlayer(strategy);
     }
 
@@ -105,6 +106,7 @@ public class PaperRockScissorsGame implements Game {
         System.out.println("There were a total of " + this.statistics.get(null) + " draws");
     }
 
+    @Override
     public boolean isOn() {
         return this.on;
     }
